@@ -47,11 +47,18 @@ function playRound(playerSelection, computerSelection) {
         return `Invalid input. Please pick 'rock', 'paper', or 'scissors' to play this game.`;
     }
 
+    //Capitalize the first letter of the word
+    const firstLetter1 = playerSelection.charAt(0).toUpperCase();
+    const firstLetter2 = computerSelection.charAt(0).toUpperCase();
+    let capPlayerSel = firstLetter1 + playerSelection.slice(1);
+    let capCompSel = firstLetter2 + computerSelection.slice(1);
+
+
     if(winner === "Tie") {
-        return `${playerSelection} and ${computerSelection} ties!`;
+        return `${capPlayerSel} and ${capCompSel} ties!`;
     } else if(winner === playerSelection) {
-        return `You win! ${playerSelection} beats ${computerSelection}`;
+        return `You win! ${capPlayerSel} beats ${capCompSel}`;
     } else if(winner === computerSelection) {
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
+        return `You lose! ${capCompSel} beats ${capPlayerSel}`;
     }
 }
