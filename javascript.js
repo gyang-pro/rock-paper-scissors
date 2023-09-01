@@ -16,7 +16,12 @@ function getComputerChoice() {
 //create a function that takes two parameters 'playerSelection' and 'computerSelection'
 function playRound(playerSelection, computerSelection) {
     let winner;
-    playerSelection = playerSelection.toLowerCase();
+
+    if((typeof playerSelection) !== 'string') {
+        return `Invalid input. Please pick 'rock', 'paper', or 'scissors' to play this game.`;
+    } else {
+        playerSelection = playerSelection.toLowerCase();
+    }
 
     if(playerSelection === computerSelection) {
         winner = "Tie";
