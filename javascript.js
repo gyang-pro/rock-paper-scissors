@@ -2,9 +2,20 @@
 function getComputerChoice() {
     //create a variable called randomNumber
     //initialize it using a random number generator
+    let randomNumber = Math.floor(Math.random() * 100) + 1;
     //if randomNumber <= 33, return rock
+    if(randomNumber <= 33) {
+        return 'rock';
+    }
     //else if randomNumber <=66, return paper
+    else if (randomNumber <= 66) {
+        return 'paper';
+    }
     //else return scissors
+    else {
+        return 'scissors'
+    }
+
 }
 
 //create a function that takes two parameters 'playerSelection' and 'computerSelection'
