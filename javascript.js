@@ -62,3 +62,19 @@ function playRound(playerSelection, computerSelection) {
         return `You lose! ${capCompSel} beats ${capPlayerSel}`;
     }
 }
+
+//create function called 'game'
+//create variable called score and set it to 0
+//create variable called playerSelection
+//create variable called computerSelection
+//create variable called roundMessage
+//create a loop for 5 rounds of the game
+    //prompt player for an input
+    //set computerSelection to a random outut from getComputerChoice()
+    //playRound with playerSelection and computerSelection and put result into roundMessage
+    //search roundMessage:
+        //if you win, add 1 to score and output roundMessage
+        //if you lose, minus 1 from score and output roundMessage
+//if score < 2, player lose
+//else if score > 2, player win
+//else player ties
