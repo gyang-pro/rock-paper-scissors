@@ -63,51 +63,41 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-//create function called 'game'
+//keeps track of score and output result after playing 5 rounds of Rock, Paper, Scissors
 function game() {
-    //create variables called win, lose, and tie and set them to 0
     let win = 0;
     let lose = 0;
     let tie = 0;
-    //create variable called playerSelection
+
     let playerSelection;
-    //create variable called computerSelection
     let computerSelection;
-    //create variable called roundMessage
     let roundMessage;
-    //create a loop for 5 rounds of the game
+
     for(let i = 0; i < 5; i++) {
         //prompt player for an input and save into playerSelection
         playerSelection = prompt("Please input 'rock', 'paper', or 'scissors' to start the game", '');
-        //set computerSelection to a random outut from getComputerChoice()
         computerSelection = getComputerChoice();
-        //playRound with playerSelection and computerSelection and put result into roundMessage
+
         roundMessage = playRound(playerSelection, computerSelection);
 
         //search roundMessage, if input is 'Invalid', play round again
         if(roundMessage.search('Invalid') >= 0) {
             i--;
-        }
-        //if you win, add 1 to win
-        else if(roundMessage.search('win') >= 0) {
+        } else if(roundMessage.search('win') >= 0) {
             win += 1;
-        }
-        //if you lose, add 1 to lose
-        else if(roundMessage.search('lose') >= 0) {
+        } else if(roundMessage.search('lose') >= 0) {
             lose += 1;
-        }
-        else {
+        } else {
             tie += 1;
         }
 
         console.log(roundMessage);
     }
-    //if win < lose, you lose
+    
+    //check the scores and output the results
     if(win < lose) {
         console.log(`You lose the game! You lost ${lose} out of 5 rounds with ${tie} ties`);
-    }
-    //else if win > lose, you win
-    else if(win > lose) {
+    } else if(win > lose) {
         console.log(`You win the game! You won ${win} out of 5 rounds with ${tie} ties`);
     }
     else {
