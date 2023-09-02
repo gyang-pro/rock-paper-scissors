@@ -64,17 +64,53 @@ function playRound(playerSelection, computerSelection) {
 }
 
 //create function called 'game'
-//create variable called score and set it to 0
-//create variable called playerSelection
-//create variable called computerSelection
-//create variable called roundMessage
-//create a loop for 5 rounds of the game
-    //prompt player for an input
-    //set computerSelection to a random outut from getComputerChoice()
-    //playRound with playerSelection and computerSelection and put result into roundMessage
-    //search roundMessage:
-        //if you win, add 1 to score and output roundMessage
-        //if you lose, minus 1 from score and output roundMessage
-//if score < 2, player lose
-//else if score > 2, player win
-//else player ties
+function game() {
+    //create variables called win, lose, and tie and set them to 0
+    let win = 0;
+    let lose = 0;
+    let tie = 0;
+    //create variable called playerSelection
+    let playerSelection;
+    //create variable called computerSelection
+    let computerSelection;
+    //create variable called roundMessage
+    let roundMessage;
+    //create a loop for 5 rounds of the game
+    for(let i = 0; i < 5; i++) {
+        //prompt player for an input and save into playerSelection
+        playerSelection = prompt("Please input 'rock', 'paper', or 'scissors' to start the game", '');
+        //set computerSelection to a random outut from getComputerChoice()
+        computerSelection = getComputerChoice();
+        //playRound with playerSelection and computerSelection and put result into roundMessage
+        roundMessage = playRound(playerSelection, computerSelection);
+
+        //search roundMessage, if input is 'Invalid', play round again
+        if(roundMessage.search('Invalid') >= 0) {
+            i--;
+        }
+        //if you win, add 1 to win
+        else if(roundMessage.search('win') >= 0) {
+            win += 1;
+        }
+        //if you lose, add 1 to lose
+        else if(roundMessage.search('lose') >= 0) {
+            lose += 1;
+        }
+        else {
+            tie += 1;
+        }
+
+        console.log(roundMessage);
+    }
+    //if win < lose, you lose
+    if(win < lose) {
+        console.log(`You lose the game! You lost ${lose} out of 5 rounds with ${tie} ties`);
+    }
+    //else if win > lose, you win
+    else if(win > lose) {
+        console.log(`You win the game! You won ${win} out of 5 rounds with ${tie} ties`);
+    }
+    else {
+        console.log('You tie!');
+    }
+}
