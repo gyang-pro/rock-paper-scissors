@@ -17,12 +17,13 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     let winner;
 
+/*
     if((typeof playerSelection) !== 'string') {
         return `Invalid input. Please pick 'rock', 'paper', or 'scissors' to play this game.`;
     } else {
         playerSelection = playerSelection.toLowerCase();
     }
-
+*/
     if(playerSelection === computerSelection) {
         winner = "Tie";
     } else if(playerSelection === 'rock') {
@@ -63,6 +64,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+/*
 //keeps track of score and output result after playing 5 rounds of Rock, Paper, Scissors
 function game() {
     let win = 0;
@@ -103,4 +105,14 @@ function game() {
     else {
         console.log('You tie!');
     }
-}
+}*/
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+    const buttonID = button.id;
+    button.addEventListener('click', () => {
+        const result = playRound(buttonID, getComputerChoice());
+        console.log(result);
+    });
+});
