@@ -108,11 +108,12 @@ function game() {
 }*/
 
 const buttons = document.querySelectorAll('button');
+const content = document.querySelector('.content');
 
 buttons.forEach(button => {
     const buttonID = button.id;
     button.addEventListener('click', () => {
         const result = playRound(buttonID, getComputerChoice());
-        console.log(result);
+        content.textContent = result;
     });
 });
