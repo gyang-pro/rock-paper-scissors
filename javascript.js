@@ -1,3 +1,20 @@
+let winScore = 0;
+let lossScore = 0;
+const buttons = document.querySelectorAll('button');
+const content = document.querySelector('.content');
+const playerScore = document.createElement('p');
+const compScore = document.createElement('p');
+
+buttons.forEach(button => {
+    const buttonID = button.id;
+    button.addEventListener('click', () => {
+        const result = playRound(buttonID, getComputerChoice());
+        content.textContent = result;
+        content.appendChild(playerScore);
+        content.appendChild(compScore);
+    });
+});
+
 //randomly returns rock, paper, or scissors
 function getComputerChoice() {
     //generate a random number between 0 and 100
@@ -17,35 +34,32 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     let winner;
 
-/*
-    if((typeof playerSelection) !== 'string') {
-        return `Invalid input. Please pick 'rock', 'paper', or 'scissors' to play this game.`;
-    } else {
-        playerSelection = playerSelection.toLowerCase();
-    }
-*/
     if(playerSelection === computerSelection) {
         winner = "Tie";
     } else if(playerSelection === 'rock') {
         if(computerSelection === 'scissors') {
             winner = playerSelection;
+            winScore++;
         } else {
             winner = computerSelection;
+            lossScore++;
         }
     } else if(playerSelection === 'scissors') {
         if(computerSelection === 'rock') {
             winner = computerSelection;
+            lossScore++;
         } else {
             winner = playerSelection;
-        }
-    } else if(playerSelection === 'paper') {
-        if(computerSelection === 'rock') {
-            winner = playerSelection;
-        } else {
-            winner = computerSelection;
+            winScore++;
         }
     } else {
-        return `Invalid input. Please pick 'rock', 'paper', or 'scissors' to play this game.`;
+        if(computerSelection === 'rock') {
+            winner = playerSelection;
+            winScore++
+        } else {
+            winner = computerSelection;
+            lossScore++
+        }
     }
 
     //capitalize the first letter of the word
@@ -54,13 +68,26 @@ function playRound(playerSelection, computerSelection) {
     let capPlayerSel = firstLetter1 + playerSelection.slice(1);
     let capCompSel = firstLetter2 + computerSelection.slice(1);
 
+    playerScore.textContent = "Win: " + winScore;
+    compScore.textContent = "Loss: " + lossScore;
+    
+    if(winScore === 5) {
+        winScore = 0;
+        lossScore = 0;
+        return `Hurray! You won the game! ${capPlayerSel} beats ${capCompSel}.`
+    } else if(lossScore === 5) {
+        winScore = 0;
+        lossScore = 0;
+        return `GAME OVER! ${capCompSel} beats ${capPlayerSel}.`
+    }
+
     //return different messages depending on the winner
     if(winner === "Tie") {
         return `${capPlayerSel} and ${capCompSel} ties!`;
     } else if(winner === playerSelection) {
-        return `You win! ${capPlayerSel} beats ${capCompSel}`;
+        return `You win! ${capPlayerSel} beats ${capCompSel}.`;
     } else {
-        return `You lose! ${capCompSel} beats ${capPlayerSel}`;
+        return `You lose! ${capCompSel} beats ${capPlayerSel}.`;
     }
 }
 
@@ -105,15 +132,5 @@ function game() {
     else {
         console.log('You tie!');
     }
-}*/
-
-const buttons = document.querySelectorAll('button');
-const content = document.querySelector('.content');
-
-buttons.forEach(button => {
-    const buttonID = button.id;
-    button.addEventListener('click', () => {
-        const result = playRound(buttonID, getComputerChoice());
-        content.textContent = result;
-    });
-});
+}
+*/
